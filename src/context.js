@@ -1,5 +1,4 @@
 import React, { useState, useContext, useEffect } from 'react'
-import { useCallback } from 'react'
 
 const url = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s='
 const AppContext = React.createContext()
@@ -9,7 +8,6 @@ const AppProvider = ({ children }) => {
   const [drinksUnfiltered, setDrinksUnfiltered] = useState([])
   const [drinks, setDrinks] = useState([])
   const [loading, setLoading] = useState(false)
-  const [currentDrinkId, setCurrentDrinkId] = useState('')
   const [userInput, setUserInput] = useState('')
 
   useEffect(() => {
@@ -26,21 +24,19 @@ const AppProvider = ({ children }) => {
     setDrinks(drinksUnfiltered)
   }, [drinksUnfiltered])
 
-  console.log(drinks)
-
-  function getDrinkId(id) {
-    setCurrentDrinkId(id)
-  }
-
   function handleUserInput(e) {
     setUserInput(e.target.value)
   }
 
   useEffect(() => {
-    const re = new RegExp(userInput, 'gi')
-    setDrinks(drinksUnfiltered.filter(drink => 
+    try {
+      const re = new RegExp(userInput, 'gi')
+      setDrinks(drinksUnfiltered.filter(drink => 
         drink.strDrink.match(re)
-    ))
+      ))
+    } catch(err){
+      setDrinks([])
+    }
   }, [userInput])
 
   console.log(userInput)
@@ -49,8 +45,6 @@ const AppProvider = ({ children }) => {
     value={{
       drinks,
       loading, 
-      getDrinkId,
-      currentDrinkId,
       userInput,
       handleUserInput
     }}
