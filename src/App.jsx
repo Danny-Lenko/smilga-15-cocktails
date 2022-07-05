@@ -1,5 +1,7 @@
-import React from 'react'
-import { Routs, Route, Link } from 'react-router-dom'
+import React, { useContext } from 'react'
+import { Routes, Route, Link } from 'react-router-dom'
+
+import { AppContext } from './context'
 // import pages
 import Home from './pages/Home'
 import About from './pages/About'
@@ -7,14 +9,26 @@ import SingleCocktail from './pages/SingleCocktail'
 import Error from './pages/Error'
 // import components
 import Navbar from './components/Navbar'
+import Loading from './components/Loading'
 
 function App() {
+  const { loading } = useContext(AppContext) 
+
+  if (loading) {
+    return <Loading />
+  }
   
   return (
     <div>
       <Navbar />
 
-      <h2>app component</h2>
+      <Routes>
+        <Route path="/" element={<Home />}></Route>
+        <Route path="/about" element={<About />}></Route>
+        <Route path="/cocktail" element={<SingleCocktail />}></Route>
+        <Route path="*" element={<Error />}></Route>
+      </Routes>
+
     </div>
   )
 }
