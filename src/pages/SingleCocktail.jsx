@@ -34,7 +34,7 @@ const SingleCocktail = () => {
   return (
     <section className="cocktail-section section">
       <Link to='/' className="btn-primary">back home</Link>
-      <h1>{drink.strDrink}</h1>
+      <h2 className="section-title">{drink.strDrink}</h2>
 
       <div className="drink">
         <img src={drink.strDrinkThumb} alt=""/>

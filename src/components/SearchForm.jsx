@@ -5,7 +5,7 @@ const SearchForm = () => {
   const { handleUserInput, userInput } = useGlobalContext()
 
   return (
-    <div className="search">
+    <section className="section search">
       <div className="search-form">
         <form className="form-control">
           <label>
@@ -18,7 +18,7 @@ const SearchForm = () => {
           </label>
         </form>
       </div>
-    </div>
+    </section>
 
   )
 }

@@ -5,10 +5,10 @@ import SearchForm from '../components/SearchForm'
 const Home = () => {
   
   return (
-    <div>
+    <main>
       <SearchForm />
       <CocktailList />
-    </div>
+    </main>
   )
 }
 

@@ -10,7 +10,7 @@ const Cocktail = ({
 }) => {
 
   return (
-    <div className="cocktail section">
+    <div className="cocktail">
       <img src={ strDrinkThumb } alt=""/>
       <footer className="cocktail-footer">
         <h3>{ strDrink }</h3>
